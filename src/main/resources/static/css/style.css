@@ -1,0 +1,57 @@
+/*Main background Styling*/
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+}
+
+/*Fixed Header & Nav Styling*/
+
+.fixed-header{
+	height:150px;
+	margin-top:0;
+	background: #337ab7;
+	width: 100%;
+	position: fixed;
+}
+nav{
+	float: right;
+	list-style: none;
+}
+nav li{
+	display: inline-block;
+	padding-top:50px;
+}
+nav li a{
+	color: #fff;
+	text-decoration: none;
+	padding: 10px 20px;
+	font-size: 22.5px;
+}
+
+ul.nav a:hover { 
+	color: #fff !important; 
+}
+
+.main-body{
+	padding-top:200px;
+	padding-left:10%;
+	padding-right:10%;
+}
+
+.container-fluid{
+	margin-top: 30px;
+}
+
+.row col-lg-4 col-lg-offset-4{
+	margin-top: 40px; 
+	background-color: #fff; 
+	padding: 20px; 
+	border: solid 1px #ddd;
+}
+
+.error{
+	text-align: center;
+	margin: 0 auto; 
+	
+}

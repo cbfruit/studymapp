@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Registration</title>
+<link th:href="@{css/style.css}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="row col-lg-4 col-lg-offset-4">
+		<form autocomplete="off" th:action="@{/register}" th:object="${user}" method="post" class="form-signin" role="form">
+			<h3 class="form-signin-heading">Registration Form</h3>
+			<div class="form-group">
+				<div class="">
+					<input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control" required pattern="[A-Za-z ]+"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="">
+					<input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control" required pattern="[A-Za-z ]+" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="">
+					<input type="email" th:field="*{email}" placeholder="Email" class="form-control" required />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="">
+					<input type="password" th:field="*{password}" placeholder="Password" id="password"class="form-control" required/>
+				</div>
+			</div>
+			<button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+			<a th:href="@{/login}" class="btn btn-info btn-lg btn-block" >Login</a>
+			
+			<span th:utext="${successMessage}"></span>
+			<div class="alert alert-success alert dismissible col-sm-12" th:if="${bindingResult != null && bindingResult.getAllErrors() != null}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+				<ul th:each="data : ${bindingResult.getAllErrors()}">
+					<li th:text="${data.getObjectName() + ' : ' + data.getDefaultMessage()}"></li>
+				</ul>
+			</div>
+			
+		</form>
+	</div>
+	<div class="row col-lg-4 col-lg-offset-4">
+		<h3 class="dark-grey">Terms and Conditions</h3>
+		<p>
+			By clicking on "Register" you agree to Study-Mapp's' Terms and Conditions and Privacy Policy.
+		</p>
+		<p>
+			All information you provide to us is stored on our secure servers. 
+			Where we have given you (or where you have chosen) a password which enables you to access certain parts of our site, you are responsible for keeping this password confidential. 
+			We ask you not to share a password with anyone.
+		</p>
+		<p>
+			Our registered user’s records are regarded as confidential and therefore will not be divulged to any third party, other than if legally required to do so to the appropriate authorities.
+			We will not sell, share, or rent your personal information to any third party or use your e-mail address for unsolicited mail. 
+		</p>
+		<p>
+			Study-Mapp is committed to protecting our customer’s privacy and takes its responsibility regarding the security of customer information very seriously. 
+			We will be clear and transparent about the information we are collecting and what we will do with that information.
+		</p>
+	</div>
+<script type="text/javascript" th:src="@{js/register.js}"></script>
+</body>
+</html>
