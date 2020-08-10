@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -22,10 +23,20 @@ public class Booking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Pattern(regexp="[A-Za-z ]+")
 	private String level;
+	
+	@Pattern(regexp="[A-Za-z -]+")
 	private String delivery;
+	
+	@Pattern(regexp="[A-Za-z ]+")
 	private String subject;
+	
+	@Pattern(regexp="[0-9]+")
 	private String startTime;
+	
+	@Pattern(regexp="[0-9]+")
 	private String endTime;
 	
 	private String details;

@@ -11,3 +11,8 @@ public interface AvailabilityRepository extends JpaRepository<Availability, Inte
 	
 
 }
+
+
+
+
+

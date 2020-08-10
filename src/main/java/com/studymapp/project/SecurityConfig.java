@@ -55,34 +55,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.frameOptions().sameOrigin()
 			.httpStrictTransportSecurity().disable()
 			.xssProtection().block(true);
-
+		
 		http.authorizeRequests()
 				// URLs matching for access rights
 				.antMatchers("/").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/register").permitAll()
 				.antMatchers("/index/**").permitAll()
-				.antMatchers("/contact/**").permitAll()
 				.antMatchers("/info/**").permitAll()
 				.antMatchers("/account/**").hasAnyAuthority("ADMIN_USER", "SITE_USER")
 				.antMatchers("/showAvailability/**").hasAnyAuthority("SITE_USER")
 				.antMatchers("/availability/**").hasAnyAuthority("ADMIN_USER")
-				.antMatchers("/user/**").hasAnyAuthority("ADMIN_USER")
 				.antMatchers("/booking/**").hasAnyAuthority("ADMIN_USER")
 				.antMatchers("/admin/**").hasAnyAuthority("ADMIN_USER")
 				.anyRequest().authenticated()
 				.and()
 				// form login
-				.csrf().disable().formLogin()
+				.formLogin()
 				.loginPage("/login")
 				.failureUrl("/login?error=true")
-				
-				
 				//CustomLoginHandler
 				.successHandler(customLoginHandler)
-				
-				
-				
 				.usernameParameter("email")
 				.passwordParameter("password")
 				.and()

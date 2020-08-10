@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -39,10 +40,12 @@ public class User {
 	//Mapping input to column name in auth_user table
 	@NotNull
 	@Column(name = "first_name")
+	@Pattern(regexp="[A-Za-z -]+")
 	private String firstName;
 
 	@NotNull
 	@Column(name = "last_name")
+	@Pattern(regexp="[A-Za-z -]+")
 	private String lastName;
 
 	@NotNull

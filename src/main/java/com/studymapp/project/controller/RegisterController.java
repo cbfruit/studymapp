@@ -2,6 +2,7 @@ package com.studymapp.project.controller;
 
 import javax.validation.Valid;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,6 +17,8 @@ import com.studymapp.project.service.UserService;
 @Controller
 public class RegisterController {
 	
+	org.slf4j.Logger logger = LoggerFactory.getLogger(RegisterController.class);
+	
 	@Autowired
 	UserService userService;
 	
@@ -28,6 +31,8 @@ public class RegisterController {
 		modelAndView.addObject("user", user); 
 		modelAndView.setViewName("register");
 		return modelAndView;
+		
+		
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
@@ -42,6 +47,9 @@ public class RegisterController {
 		
 		//Check UserRepo if email already exists
 		if (userExists != null) {
+			
+			logger.error("Unsuccessful registration, email already present in DB");
+			
 			modelAndView.addObject("successMessage", "Oops!  There is already a user registered with that email address.");
 		}		
 		//Check the form for errors and return message to user
@@ -52,6 +60,9 @@ public class RegisterController {
 		//If no errors, a new user will be created in the DB
 		else {
 			userService.saveUser(user);
+			
+			logger.info("New account created");
+			
 			modelAndView.addObject("successMessage", "User account created successfully!");
 		}
 		modelAndView.addObject("user", new User()); 

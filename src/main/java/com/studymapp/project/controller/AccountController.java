@@ -11,7 +11,7 @@ public class AccountController {
 	@RequestMapping(value = "/account", method = RequestMethod.GET)
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("account"); // resources/template/index.html
+		modelAndView.setViewName("account"); 
 		return modelAndView;
 	}
 }

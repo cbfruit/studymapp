@@ -8,14 +8,13 @@ import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-
 
 @Configuration
 public class CustomLoginHandler extends SimpleUrlAuthenticationSuccessHandler {
@@ -35,6 +34,8 @@ public class CustomLoginHandler extends SimpleUrlAuthenticationSuccessHandler {
 		redirectStrategy.sendRedirect(request, response, targetUrl);
 	}
 	
+	org.slf4j.Logger logger = LoggerFactory.getLogger(CustomLoginHandler.class);
+	
 	protected String determineTargetUrl(Authentication authentication) {
 		String url = "/login?error=true";
 		
@@ -46,9 +47,15 @@ public class CustomLoginHandler extends SimpleUrlAuthenticationSuccessHandler {
 		}
 		//Check user roles and return appropriate redirect url
 		if(roles.contains("ADMIN_USER")) {
+			
+			logger.info("Admin logged into application");
+			
 			url = "/admin";
 		}
 		else if(roles.contains("SITE_USER")) {
+			
+			logger.info("User logged into application");
+			
 			url = "/account";
 		}
 		return url;

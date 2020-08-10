@@ -3,6 +3,7 @@ package com.studymapp.project.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,8 @@ import com.studymapp.project.service.BookingService;
 @Controller
 public class BookingController {
 	
+	org.slf4j.Logger logger = LoggerFactory.getLogger(BookingController.class);
+	
 	//Import all services required and add @Autowired
 	@Autowired	private BookingService bookingService;
 			
@@ -29,7 +32,7 @@ public class BookingController {
 				
 		//Call the model for each list to display results on booking page		
 		model.addAttribute("bookings", bookingList );
-				
+		
 		//Return booking.html
 		return "booking";
 	}
@@ -38,7 +41,8 @@ public class BookingController {
 	public String addNew(Booking booking) {
 		
 		bookingService.save(booking);
-		
+		//add logging
+		logger.info("New booking created");
 		return "redirect:/booking";
 	}
 	//Call method created in bookingService to return ID from Repository
@@ -62,6 +66,8 @@ public class BookingController {
 	public String delete(Integer id) {
 		
 		bookingService.delete(id);
+		
+		logger.info("Booking record deleted");
 		
 		return "redirect:/booking";
 	}

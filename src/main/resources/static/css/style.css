@@ -34,9 +34,9 @@ ul.nav a:hover {
 }
 
 .main-body{
-	padding-top:200px;
-	padding-left:10%;
-	padding-right:10%;
+	padding-top:250px;
+	padding-left:7.5%;
+	padding-right:7.5%;
 }
 
 .container-fluid{
@@ -50,8 +50,3 @@ ul.nav a:hover {
 	border: solid 1px #ddd;
 }
 
-.error{
-	text-align: center;
-	margin: 0 auto; 
-	
-}

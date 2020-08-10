@@ -9,12 +9,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 	
+	
 	//Define bean for password encoder
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		
 		//Create new instance of password encoder
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		
 		return bCryptPasswordEncoder;
 	}
 
